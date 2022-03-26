@@ -230,7 +230,7 @@ def train(args):
         optimizer, num_warmup_steps=0, num_training_steps=total_steps
     )
 
-    loss_fn = nn.CrossEntropyLoss().to(device)
+    loss_fn = nn.MSELoss().to(device)
 
     for epoch in range(1, args.epochs + 1):
         model.train()
