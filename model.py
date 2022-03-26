@@ -46,7 +46,7 @@ class ProteinClassifier(nn.Module):
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-logger.addHandler(logging.StreamHandler(sys.stdout))
+#logger.addHandler(logging.StreamHandler(sys.stdout))
 
 MAX_LEN = None  # 512  # this is the max length of the sequence
 PRE_TRAINED_MODEL_NAME = "Rostlab/prot_bert"
@@ -241,6 +241,8 @@ def train(args):
 
             outputs = model(b_input_ids, attention_mask=b_input_mask)
             loss = loss_fn(outputs, b_labels)
+            print(outputs, b_labels, loss)
+            breakpoint()
 
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
@@ -308,7 +310,7 @@ class args:
     data_dir = "data"
     test = False
     num_gpus = int(iscuda)
-    num_labels = 2
+    num_labels = 1
 
     batch_size = 4
     test_batch_size = 8

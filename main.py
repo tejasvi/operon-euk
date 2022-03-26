@@ -172,7 +172,7 @@ def main():
     pmap = gene_proteins()
     pf = lambda g: " ".join(pmap[g])
     data_x = [(pf(g1), pf(g2)) for g1, g2 in operonic + non_operonic[: len(operonic)]]
-    data_y = [1] * (len(data_x) // 2) + [0] * (len(data_x) // 2)
+    data_y = [1] * (len(data_x) // 2) + [-1] * (len(data_x) // 2)
 
     temp = list(zip(data_x, data_y))
     shuffle(temp)
