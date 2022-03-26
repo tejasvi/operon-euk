@@ -130,7 +130,7 @@ class ProteinSequenceDataset(Dataset):
             "protein_sequence": [sequence1, sequence2],
             "input_ids": encoding["input_ids"].flatten(),
             "attention_mask": encoding["attention_mask"].flatten(),
-            "targets": torch.tensor([target], dtype=torch.long),
+            "targets": torch.tensor([target], dtype=torch.float),
         }
 
 
@@ -241,8 +241,6 @@ def train(args):
 
             outputs = model(b_input_ids, attention_mask=b_input_mask)
             loss = loss_fn(outputs, b_labels)
-            print(outputs, b_labels, loss)
-            breakpoint()
 
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
