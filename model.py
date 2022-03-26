@@ -46,7 +46,7 @@ class ProteinClassifier(nn.Module):
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-#logger.addHandler(logging.StreamHandler(sys.stdout))
+# logger.addHandler(logging.StreamHandler(sys.stdout))
 
 MAX_LEN = None  # 512  # this is the max length of the sequence
 PRE_TRAINED_MODEL_NAME = "Rostlab/prot_bert"
@@ -130,7 +130,7 @@ class ProteinSequenceDataset(Dataset):
             "protein_sequence": [sequence1, sequence2],
             "input_ids": encoding["input_ids"].flatten(),
             "attention_mask": encoding["attention_mask"].flatten(),
-            "targets": torch.tensor(target, dtype=torch.long),
+            "targets": torch.tensor([target], dtype=torch.long),
         }
 
 
